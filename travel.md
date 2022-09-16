@@ -1,4 +1,4 @@
-- [Bienvenu sur Travel !]
+<!-- - [Bienvenu sur Travel !] -->
 
 
 # Bienvenu sur Travel !
@@ -6,6 +6,8 @@
 `Travel`, souhaite proposer la possibilité de **réserver en ligne des billets d'avion** à leurs clients.
 
 Votre mission est de **concevoir** à l'aide du standard UML la **modélisation** de la plateforme.
+# Méthode
+> **MERISE** Méthode d'Étude et de Réalisation Informatique par les Sous-Ensembles ou pour les Systèmes d'Entreprises.
 
 <details>
 <summary>Régle métier</summary>
@@ -43,5 +45,29 @@ Votre mission est de **concevoir** à l'aide du standard UML la **modélisation*
 	- a une heure de départ.
 
 </details>
----
+
+## Dictionnaire de données
+| Donnée                        |  Nom attribut  |   Code | Type           |         Exemple         |      Remarque      |
+| ----------------------------- | :------------: | -----: | -------------- | :---------------------: | :----------------: |
+| client reserve                | client_reserve | CLIRES | Alphanumérique |                         |                    |
+| client annule                 |      mail      | CLIANU | Alphanumérique |                         |                    |
+| réservation   numéro          |      code      | RESCOD | Numérique      |                         |                    |
+| réservation  état             |      état      | RESETA | Bool           |                         |  fermé vs ouvert   |
+| réservation  du passager      |    passager    | RESPAS | Alphanumérique |         Franco          |                    |
+| vol numéro                    |      code      | VOLCOD | Alphanumérique |         AIR35BG         |                    |
+| vol état                      |      état      | VOLETA | Bool           |                         | annulé vs maintenu |
+| vol escale                    |     escale     | VOLESC | Numérique      |                         |   nombre escale    |
+| vol départ                    |     départ     | VOLDEP | Alphanumérique |          Paris          |                    |
+| vol arrivée                   |    arrivée     | VOLARR | Alphanumérique |         Rennes          |                    |
+| vol date départ               |  date_départ   | VODADE | Date           |                         |                    |
+| vol date arrivée              |  date_arrivée  | VODAAR | Date           |                         |                    |
+| aéroport                      |      nom       | AERNAM | Alphanumérique | Paris-charles-de-gaulle |                    |
+| aéroport dessert              |    dessert     | AERDES | Alphanumérique |     HABIB BOURGIBA      |                    |
+| compagnie aérienne            |      nom       | COMNAM | Alphanumérique |       AIR-France        |                    |
+| compagnie          vols       |      vols      | COMVOL | Alphanumérique |     PARIS  MONASTIR     |                    |
+| compagnie decide reservations |     decide     | COMDEC | Bool           |                         |                    |
+| escale date arrivée           | escale_arrivée | ESDAAR | Date           |                         |                    |
+| escale heure depart           | escale_depart  | ESDADE | Date           |                         |                    |
+
+
 
