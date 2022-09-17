@@ -5,9 +5,11 @@
 
 `Travel`, souhaite proposer la possibilité de **réserver en ligne des billets d'avion** à leurs clients.
 
-Votre mission est de **concevoir** à l'aide du standard UML la **modélisation** de la plateforme.
+Notre mission est de **concevoir** à l'aide du standard UML la **modélisation** de la plateforme.
 # Méthode
 > **MERISE** Méthode d'Étude et de Réalisation Informatique par les Sous-Ensembles ou pour les Systèmes d'Entreprises.
+> Notre mission est de **concevoir** à l'aide du standard UML la **modélisation** de la plateforme.
+#
 
 <details>
 <summary>Régle métier</summary>
@@ -70,4 +72,23 @@ Votre mission est de **concevoir** à l'aide du standard UML la **modélisation*
 | escale heure depart           | escale_depart  | ESDADE | Date           |                         |                    |
 
 
+# MCD : modèle conceptuel de données
 
+```mermaid
+graph LR
+A[passager] --0,n --- B((réserver))
+B --0,n --- D[vol]
+C[Réservation] --1,1 --- B
+D-- 1,1 ---E((proposer))
+E -- 1,n --- F[compagnie]
+D --1,1--- G((départ))
+D --1,1--- H((arrivée))
+D --0,n--- I((escale))
+I --0,n--- J[aéroport]
+G --0,n--- J
+H --0,n--- J
+J --1,1--- K((desservir))
+K --0,n---L((ville))
+```
+
+Ceci est une illustration graphique plus compléte du [MCD](mcd.png)
