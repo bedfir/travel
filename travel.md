@@ -88,7 +88,7 @@ I --0,n--- J[aéroport]
 G --0,n--- J
 H --0,n--- J
 J --1,1--- K((desservir))
-K --0,n---L((ville))
+K --0,n---L[ville]
 ```
 
 Ceci est une illustration graphique plus compléte du [MCD](mcd.png)
