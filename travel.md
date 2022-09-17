@@ -70,7 +70,7 @@ Notre mission est de **concevoir** à l'aide du standard UML la **modélisation*
 | compagnie decide reservations |     decide     | COMDEC | Bool           |                         |                    |
 | escale date arrivée           | escale_arrivée | ESDAAR | Date           |                         |                    |
 | escale heure depart           | escale_depart  | ESDADE | Date           |                         |                    |
-
+****
 
 # MCD : modèle conceptuel de données
 
@@ -92,3 +92,13 @@ K --0,n---L[ville]
 ```
 
 Ceci est une illustration graphique plus compléte du [MCD](mcd.png)
+
+# MLD
+
+réservation(<ins>res_id</ins>, res_numero, res_etat)
+passager(<ins>p_id</ins>, p_nom, p_prenom, p_passport_n, <ins>#res_id</ins>, <ins>#v_id</ins>)
+vol(<ins>v_id</ins>, v_numero, <ins>#c_id</ins>, <ins>#a_depart</ins>, <ins>#a_arrivee</ins>)
+compagnie(<ins>c_id</ins>, c_nom)
+aeroport(<ins>a_id</ins>, a_nom, <ins>#vi_id</ins>)
+escale(e_date, e_heure, <ins>#v_id</ins>, <ins>#a_id</ins>)
+ville(<ins>vi_id</ins>, vi_nom, vi_code_p, vi_departement)
