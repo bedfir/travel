@@ -122,9 +122,9 @@ K --0,n---L[ville]
 	Id_passager COUNTER,
 	nom VARCHAR(50) NOT NULL,
 	prenom VARCHAR(50) NOT NULL,
-	passport_numéro INT NOT NULL,
+	passport_numero INT NOT NULL,
 	PRIMARY KEY(Id_passager),
-	UNIQUE(passport_numéro)
+	UNIQUE(passport_numero)
 	);
 
 	CREATE TABLE ville(
@@ -135,47 +135,47 @@ K --0,n---L[ville]
 	PRIMARY KEY(Id_ville)
 	);
 
-	CREATE TABLE aéroport(
-	Id_aéroport COUNTER,
+	CREATE TABLE aeroport(
+	Id_aeroport COUNTER,
 	nom VARCHAR(50) NOT NULL,
 	Id_ville INT NOT NULL,
-	PRIMARY KEY(Id_aéroport),
+	PRIMARY KEY(Id_aeroport),
 	FOREIGN KEY(Id_ville) REFERENCES ville(Id_ville)
 	);
 
 	CREATE TABLE vol(
 	Id_vol COUNTER,
-	numéro INT NOT NULL,
+	numero INT NOT NULL,
 	Id_compagnie INT NOT NULL,
-	Id_aéroport_arrivee INT NOT NULL,
-	Id_aéroport_depart INT NOT NULL,
+	Id_aeroport_arrivee INT NOT NULL,
+	Id_aeroport_depart INT NOT NULL,
 	PRIMARY KEY(Id_vol),
-	UNIQUE(numéro),
+	UNIQUE(numero),
 	FOREIGN KEY(Id_compagnie) REFERENCES compagnie(Id_compagnie),
-	FOREIGN KEY(Id_aéroport_arrivee) REFERENCES aéroport(Id_aéroport),
-	FOREIGN KEY(Id_aéroport_depart) REFERENCES aéroport(Id_aéroport)
+	FOREIGN KEY(Id_aeroport_arrivee) REFERENCES aeroport(Id_aeroport),
+	FOREIGN KEY(Id_aeroport_depart) REFERENCES aeroport(Id_aeroport)
 	);
 
-	CREATE TABLE réservation(
-	Id_réservation COUNTER,
-	numéro INT NOT NULL,
-	état LOGICAL NOT NULL,
+	CREATE TABLE reservation(
+	Id_reservation COUNTER,
+	numero INT NOT NULL,
+	etat LOGICAL NOT NULL,
 	Id_vol INT NOT NULL,
 	Id_passager INT NOT NULL,
-	PRIMARY KEY(Id_réservation),
-	UNIQUE(numéro),
+	PRIMARY KEY(Id_reservation),
+	UNIQUE(numero),
 	FOREIGN KEY(Id_vol) REFERENCES vol(Id_vol),
 	FOREIGN KEY(Id_passager) REFERENCES passager(Id_passager)
 	);
 
 	CREATE TABLE escale(
 	Id_vol INT,
-	Id_aéroport INT,
-	date_départ DATE NOT NULL,
-	heure_départ TIME NOT NULL,
-	PRIMARY KEY(Id_vol, Id_aéroport),
+	Id_aeroport INT,
+	date_depart DATE NOT NULL,
+	heure_depart TIME NOT NULL,
+	PRIMARY KEY(Id_vol, Id_aeroport),
 	FOREIGN KEY(Id_vol) REFERENCES vol(Id_vol),
-	FOREIGN KEY(Id_aéroport) REFERENCES aéroport(Id_aéroport)
+	FOREIGN KEY(Id_aeroport) REFERENCES aeroport(Id_aeroport)
 	);
 ~~~~
 
