@@ -91,17 +91,17 @@ J --1,1--- K((desservir))
 K --0,n---L[ville]
 ```
 
-Ceci est une illustration graphique plus compléte du [MCD](mcd.png)
+- Ceci est une illustration graphique plus compléte du [MCD](mcd.png)
 
 # MLD
 ## Model logique de données (représentation textuel)
 
-- **réservation**(<ins>res_id</ins>, res_numero, res_etat)<br>
-- **passager**(<ins>p_id</ins>, p_nom, p_prenom, p_passport_n, **<ins>#res_id</ins>**, **<ins>#v_id</ins>**)<br>
+- **réservation**(<ins>res_id</ins>, res_numero, res_etat, **<ins>#p_id</ins>**, **<ins>#v_id</ins>**)<br>
+- **passager**(<ins>p_id</ins>, p_nom, p_prenom, p_passport_n)<br>
 - **vol**(<ins>v_id</ins>, v_numero, **<ins>#c_id</ins>**, **<ins>#a_depart</ins>**, **<ins>#a_arrivee</ins>**)<br>
 - **compagnie**(<ins>c_id</ins>, c_nom)<br>
 - **aeroport**(<ins>a_id</ins>, a_nom, **<ins>#vi_id</ins>**)<br>
 - **escale**(e_date, e_heure, **<ins>#v_id</ins>**, **<ins>#a_id</ins>**)<br>
 - **ville**(<ins>vi_id</ins>, vi_nom, vi_code_p, vi_departement)<br>
 
-Ceci est une illustration graphique du [MLD](mld.png)
+- Ceci est une illustration graphique du [MLD](mld.png)
