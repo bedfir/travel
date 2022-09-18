@@ -109,9 +109,10 @@ K --0,n---L[ville]
 # MPD : modèle physique de données
 ![alt text](mpd.png)
 
-#
+
+# Script
 <details>
-<h1>Script SQL</h1>
+<summary>Script SQL</summary>
 <br>
 CREATE TABLE compagnie(
    Id_compagnie COUNTER,
