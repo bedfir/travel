@@ -119,7 +119,7 @@ CREATE TABLE compagnie(
    nom VARCHAR(50) NOT NULL,
    PRIMARY KEY(Id_compagnie)
 );
-
+<br>
 CREATE TABLE passager(
    Id_passager COUNTER,
    nom VARCHAR(50) NOT NULL,
@@ -128,7 +128,7 @@ CREATE TABLE passager(
    PRIMARY KEY(Id_passager),
    UNIQUE(passport_numéro)
 );
-
+<br>
 CREATE TABLE ville(
    Id_ville COUNTER,
    nom VARCHAR(50) NOT NULL,
@@ -136,7 +136,7 @@ CREATE TABLE ville(
    departement VARCHAR(50) NOT NULL,
    PRIMARY KEY(Id_ville)
 );
-
+<br>
 CREATE TABLE aéroport(
    Id_aéroport COUNTER,
    nom VARCHAR(50) NOT NULL,
@@ -144,7 +144,7 @@ CREATE TABLE aéroport(
    PRIMARY KEY(Id_aéroport),
    FOREIGN KEY(Id_ville) REFERENCES ville(Id_ville)
 );
-
+<br>
 CREATE TABLE vol(
    Id_vol COUNTER,
    numéro INT NOT NULL,
@@ -157,7 +157,7 @@ CREATE TABLE vol(
    FOREIGN KEY(Id_aéroport_arrivee) REFERENCES aéroport(Id_aéroport),
    FOREIGN KEY(Id_aéroport_depart) REFERENCES aéroport(Id_aéroport)
 );
-
+<br>
 CREATE TABLE réservation(
    Id_réservation COUNTER,
    numéro INT NOT NULL,
@@ -169,7 +169,7 @@ CREATE TABLE réservation(
    FOREIGN KEY(Id_vol) REFERENCES vol(Id_vol),
    FOREIGN KEY(Id_passager) REFERENCES passager(Id_passager)
 );
-
+<br>
 CREATE TABLE escale(
    Id_vol INT,
    Id_aéroport INT,
