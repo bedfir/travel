@@ -78,7 +78,7 @@ Notre mission est de **concevoir** à l'aide du standard UML la **modélisation*
 graph LR
 A[passager] --0,n --- B((réserver))
 B --0,n --- D[vol]
-C[Réservation] --1,1 --- B
+C[réservation] --1,1 --- B
 D-- 1,1 ---E((proposer))
 E -- 1,n --- F[compagnie]
 D --1,1--- G((départ))
