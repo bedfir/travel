@@ -51,9 +51,9 @@ Notre mission est de **concevoir** à l'aide du standard UML la **modélisation*
 ## Dictionnaire de données
 | Donnée                        |  Nom attribut  |   Code | Type           |         Exemple         |      Remarque      |
 | ----------------------------- | :------------: | -----: | -------------- | :---------------------: | :----------------: |
-| client reserve                | client_reserve | CLIRES | Alphanumérique |                         |                    |
+| client réserve                | client_reserve | CLIRES | Alphanumérique |                         |                    |
 | client annule                 |      mail      | CLIANU | Alphanumérique |                         |                    |
-| réservation   numéro          |      code      | RESCOD | Numérique      |                         |                    |
+| réservation   numero          |      code      | RESCOD | Numérique      |                         |                    |
 | réservation  état             |      état      | RESETA | Bool           |                         |  fermé vs ouvert   |
 | réservation  du passager      |    passager    | RESPAS | Alphanumérique |         Franco          |                    |
 | vol numéro                    |      code      | VOLCOD | Alphanumérique |         AIR35BG         |                    |
@@ -66,7 +66,7 @@ Notre mission est de **concevoir** à l'aide du standard UML la **modélisation*
 | aéroport                      |      nom       | AERNAM | Alphanumérique | Paris-charles-de-gaulle |                    |
 | aéroport dessert              |    dessert     | AERDES | Alphanumérique |     HABIB BOURGIBA      |                    |
 | compagnie aérienne            |      nom       | COMNAM | Alphanumérique |       AIR-France        |                    |
-| compagnie          vols       |      vols      | COMVOL | Alphanumérique |     PARIS  MONASTIR     |                    |
+| compagnie vols       			|      vols      | COMVOL | Alphanumérique |     PARIS  MONASTIR     |                    |
 | compagnie decide reservations |     decide     | COMDEC | Bool           |                         |                    |
 | escale date arrivée           | escale_arrivée | ESDAAR | Date           |                         |                    |
 | escale heure depart           | escale_depart  | ESDADE | Date           |                         |                    |
@@ -127,51 +127,51 @@ CREATE TABLE ville(
 );
 
 CREATE TABLE aéroport(
-   Id_aéroport COUNTER,
+   Id_aeroport COUNTER,
    nom VARCHAR(50) NOT NULL,
    Id_ville INT NOT NULL,
-   PRIMARY KEY(Id_aéroport),
+   PRIMARY KEY(Id_aeroport),
    FOREIGN KEY(Id_ville) REFERENCES ville(Id_ville)
 );
 
 CREATE TABLE vol(
    Id_vol COUNTER,
-   date_deparet DATE NOT NULL,
+   date_depart DATE NOT NULL,
    date_arrivee DATE NOT NULL,
-   numéro INT NOT NULL,
+   numero INT NOT NULL,
    etat_vol SMALLINT NOT NULL,
    Id_compagnie INT NOT NULL,
-   Id_aéroport_arrivee INT NOT NULL,
-   Id_aéroport_depart INT NOT NULL,
+   Id_aeroport_arrivee INT NOT NULL,
+   Id_aeroport_depart INT NOT NULL,
    PRIMARY KEY(Id_vol),
-   UNIQUE(numéro),
+   UNIQUE(numero),
    FOREIGN KEY(Id_compagnie) REFERENCES compagnie(Id_compagnie),
-   FOREIGN KEY(Id_aéroport_arrivee) REFERENCES aéroport(Id_aéroport),
-   FOREIGN KEY(Id_aéroport_depart) REFERENCES aéroport(Id_aéroport)
+   FOREIGN KEY(Id_aeroport_arrivee) REFERENCES aéroport(Id_aeroport),
+   FOREIGN KEY(Id_aeroport_depart) REFERENCES aéroport(Id_aeroport)
 );
 
 CREATE TABLE reservation(
    Id_reservation COUNTER,
    nom VARCHAR(50) NOT NULL,
    prenom VARCHAR(50) NOT NULL,
-   passport_numéro INT NOT NULL,
+   passport_numero INT NOT NULL,
    numero_res INT NOT NULL,
    etat_res LOGICAL NOT NULL,
    Id_vol INT NOT NULL,
    PRIMARY KEY(Id_reservation),
-   UNIQUE(passport_numéro),
+   UNIQUE(passport_numero),
    UNIQUE(numero_res),
    FOREIGN KEY(Id_vol) REFERENCES vol(Id_vol)
 );
 
 CREATE TABLE escale(
    Id_vol INT,
-   Id_aéroport INT,
+   Id_aeroport INT,
    date_arrivee DATE NOT NULL,
-   date_départ TIME NOT NULL,
-   PRIMARY KEY(Id_vol, Id_aéroport),
+   date_depart TIME NOT NULL,
+   PRIMARY KEY(Id_vol, Id_aeroport),
    FOREIGN KEY(Id_vol) REFERENCES vol(Id_vol),
-   FOREIGN KEY(Id_aéroport) REFERENCES aéroport(Id_aéroport)
+   FOREIGN KEY(Id_aeroport) REFERENCES aéroport(Id_aeroport)
 );
 
 ~~~~
