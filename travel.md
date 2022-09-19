@@ -75,12 +75,13 @@ Notre mission est de **concevoir** à l'aide du standard UML la **modélisation*
 # MCD : modèle conceptuel de données
 
 ```mermaid
+
 graph LR
-A[passager] --0,n --- B((réserver))
+
+A[réservation] --1, 1 --- B((lier))
 B --0,n --- D[vol]
-C[réservation] --1,1 --- B
 D-- 1,1 ---E((proposer))
-E -- 1,n --- F[compagnie]
+E -- 0,n --- F[compagnie]
 D --1,1--- G((départ))
 D --1,1--- H((arrivée))
 D --0,n--- I((escale))
