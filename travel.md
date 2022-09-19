@@ -97,8 +97,7 @@ K --0,n---L[ville]
 # MLD
 ## Model logique de données (représentation textuel)
 
-- **réservation**(<ins>res_id</ins>, res_numero, res_etat, **<ins>#p_id</ins>**, **<ins>#v_id</ins>**)<br>
-- **passager**(<ins>p_id</ins>, p_nom, p_prenom, p_passport_n)<br>
+- **réservation**(<ins>res_id</ins>, res_numero, res_etat, res_passport_n, p_nom, p_prenom, **<ins>#v_id</ins>**)<br>
 - **vol**(<ins>v_id</ins>, v_numero, **<ins>#c_id</ins>**, **<ins>#a_depart</ins>**, **<ins>#a_arrivee</ins>**)<br>
 - **compagnie**(<ins>c_id</ins>, c_nom)<br>
 - **aeroport**(<ins>a_id</ins>, a_nom, **<ins>#vi_id</ins>**)<br>
@@ -113,70 +112,67 @@ K --0,n---L[ville]
 
 # Script SQL
 ~~~~sql
-	CREATE TABLE compagnie(
-	Id_compagnie COUNTER,
-	nom VARCHAR(50) NOT NULL,
-	PRIMARY KEY(Id_compagnie)
-	);
+CREATE TABLE compagnie(
+   Id_compagnie COUNTER,
+   nom VARCHAR(50) NOT NULL,
+   PRIMARY KEY(Id_compagnie)
+);
 
-	CREATE TABLE passager(
-	Id_passager COUNTER,
-	nom VARCHAR(50) NOT NULL,
-	prenom VARCHAR(50) NOT NULL,
-	passport_numero INT NOT NULL,
-	PRIMARY KEY(Id_passager),
-	UNIQUE(passport_numero)
-	);
+CREATE TABLE ville(
+   Id_ville COUNTER,
+   nom VARCHAR(50) NOT NULL,
+   code_postal INT NOT NULL,
+   departement VARCHAR(50) NOT NULL,
+   PRIMARY KEY(Id_ville)
+);
 
-	CREATE TABLE ville(
-	Id_ville COUNTER,
-	nom VARCHAR(50) NOT NULL,
-	code_postal INT NOT NULL,
-	departement VARCHAR(50) NOT NULL,
-	PRIMARY KEY(Id_ville)
-	);
+CREATE TABLE aéroport(
+   Id_aéroport COUNTER,
+   nom VARCHAR(50) NOT NULL,
+   Id_ville INT NOT NULL,
+   PRIMARY KEY(Id_aéroport),
+   FOREIGN KEY(Id_ville) REFERENCES ville(Id_ville)
+);
 
-	CREATE TABLE aeroport(
-	Id_aeroport COUNTER,
-	nom VARCHAR(50) NOT NULL,
-	Id_ville INT NOT NULL,
-	PRIMARY KEY(Id_aeroport),
-	FOREIGN KEY(Id_ville) REFERENCES ville(Id_ville)
-	);
+CREATE TABLE vol(
+   Id_vol COUNTER,
+   date_deparet DATE NOT NULL,
+   date_arrivee DATE NOT NULL,
+   numéro INT NOT NULL,
+   etat_vol SMALLINT NOT NULL,
+   Id_compagnie INT NOT NULL,
+   Id_aéroport_arrivee INT NOT NULL,
+   Id_aéroport_depart INT NOT NULL,
+   PRIMARY KEY(Id_vol),
+   UNIQUE(numéro),
+   FOREIGN KEY(Id_compagnie) REFERENCES compagnie(Id_compagnie),
+   FOREIGN KEY(Id_aéroport_arrivee) REFERENCES aéroport(Id_aéroport),
+   FOREIGN KEY(Id_aéroport_depart) REFERENCES aéroport(Id_aéroport)
+);
 
-	CREATE TABLE vol(
-	Id_vol COUNTER,
-	numero INT NOT NULL,
-	Id_compagnie INT NOT NULL,
-	Id_aeroport_arrivee INT NOT NULL,
-	Id_aeroport_depart INT NOT NULL,
-	PRIMARY KEY(Id_vol),
-	UNIQUE(numero),
-	FOREIGN KEY(Id_compagnie) REFERENCES compagnie(Id_compagnie),
-	FOREIGN KEY(Id_aeroport_arrivee) REFERENCES aeroport(Id_aeroport),
-	FOREIGN KEY(Id_aeroport_depart) REFERENCES aeroport(Id_aeroport)
-	);
+CREATE TABLE reservation(
+   Id_reservation COUNTER,
+   nom VARCHAR(50) NOT NULL,
+   prenom VARCHAR(50) NOT NULL,
+   passport_numéro INT NOT NULL,
+   numero_res INT NOT NULL,
+   etat_res LOGICAL NOT NULL,
+   Id_vol INT NOT NULL,
+   PRIMARY KEY(Id_reservation),
+   UNIQUE(passport_numéro),
+   UNIQUE(numero_res),
+   FOREIGN KEY(Id_vol) REFERENCES vol(Id_vol)
+);
 
-	CREATE TABLE reservation(
-	Id_reservation COUNTER,
-	numero INT NOT NULL,
-	etat LOGICAL NOT NULL,
-	Id_vol INT NOT NULL,
-	Id_passager INT NOT NULL,
-	PRIMARY KEY(Id_reservation),
-	UNIQUE(numero),
-	FOREIGN KEY(Id_vol) REFERENCES vol(Id_vol),
-	FOREIGN KEY(Id_passager) REFERENCES passager(Id_passager)
-	);
+CREATE TABLE escale(
+   Id_vol INT,
+   Id_aéroport INT,
+   date_arrivee DATE NOT NULL,
+   date_départ TIME NOT NULL,
+   PRIMARY KEY(Id_vol, Id_aéroport),
+   FOREIGN KEY(Id_vol) REFERENCES vol(Id_vol),
+   FOREIGN KEY(Id_aéroport) REFERENCES aéroport(Id_aéroport)
+);
 
-	CREATE TABLE escale(
-	Id_vol INT,
-	Id_aeroport INT,
-	date_depart DATE NOT NULL,
-	heure_depart TIME NOT NULL,
-	PRIMARY KEY(Id_vol, Id_aeroport),
-	FOREIGN KEY(Id_vol) REFERENCES vol(Id_vol),
-	FOREIGN KEY(Id_aeroport) REFERENCES aeroport(Id_aeroport)
-	);
 ~~~~
 
