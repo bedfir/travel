@@ -107,7 +107,7 @@ K --0,n---L[ville]
 - Ceci est une illustration graphique du [MLD](mld.png)
 
 # MPD : modèle physique de données
-![alt modele physique de données](mpd.png)
+![alt modele physique de données](m_pd.png)
 
 
 # Script SQL
